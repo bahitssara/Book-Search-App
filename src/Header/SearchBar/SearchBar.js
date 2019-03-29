@@ -13,12 +13,9 @@ class SearchBar extends React.Component {
    
 
     handleSubmit(e) {
-        this.setState({
-            search: e.target.value
-        })
         e.preventDefault();
         console.log('search clicked')
-
+        
         const booksKey='AIzaSyB6apkLWLVpFlcWlxDu09bOOrrftrvpCAo';
         const url=`https://www.googleapis.com/books/v1/volumes?q=${e.target.searchbar.value}&keys=${booksKey}`;
         const options = {
@@ -37,7 +34,7 @@ class SearchBar extends React.Component {
                 })
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data)
+                    console.log(data.items)
                     this.props.loadBooks(data.items)
                 })
                 .catch(err => {
@@ -45,7 +42,8 @@ class SearchBar extends React.Component {
                     error:err.message
                     })
                 })
-            };
+        };
+    
       
 
     render(){
@@ -57,7 +55,7 @@ class SearchBar extends React.Component {
                         type='text' 
                         name='searchbar' 
                         placeholder='search books'
-                        defaultValue={this.state.search}/>
+                        />
                     <button 
                         type='submit' 
                         className='search-button' 

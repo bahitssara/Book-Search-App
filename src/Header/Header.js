@@ -9,7 +9,7 @@ export function Header () {
             <div className='header'>
                 <h1>Google Book Search</h1>
             </div>
-                <SearchBar 
+                <SearchBar loadbookList={(bookList) => this.state.loadbookList(bookList)}
                 />
                 <FilterOptions />
         </div>

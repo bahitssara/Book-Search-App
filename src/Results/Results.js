@@ -1,12 +1,22 @@
 import React from 'react'
-import BookInfo from './BookInfo/BookInfo';
+import BookDisplay from './BookInfo/BookDisplay';
 
 class Results extends React.Component {
-    render(){
-        return(
-            <div className='results-container'>
-                <BookInfo />
-            </div>
+
+    loadbookList(bookList) {
+        this.setState({
+          bookList: bookList
+        })
+      }  
+
+        render(){
+
+            return(
+                <div className='results-container'>
+                    <BookDisplay 
+                        loadbookList={booklist => this.loadbookList(booklist)}
+                        bookList={this.props.bookList}/>
+                </div>
         )
     }
 }
