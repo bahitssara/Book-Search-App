@@ -10,7 +10,6 @@ class SearchBar extends React.Component {
         };
         this.handleSubmit = this.handleSubmit.bind(this)
     }
-   
 
     handleSubmit(e) {
         e.preventDefault();
@@ -18,23 +17,17 @@ class SearchBar extends React.Component {
         
         const booksKey='AIzaSyB6apkLWLVpFlcWlxDu09bOOrrftrvpCAo';
         const url=`https://www.googleapis.com/books/v1/volumes?q=${e.target.searchbar.value}&keys=${booksKey}`;
-        const options = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-                }
-            }
+        
 
-            fetch(url, options)
+            fetch(url)
                 .then(res => {
                     if(!res.ok) {
                     throw new Error('Something went wrong');
                     }
-                    return res;
+                    return res.json();
                 })
-                .then(res => res.json())
                 .then(data => {
-                    console.log(data.items)
+                    console.log(data)                 
                     this.props.loadBooks(data.items)
                 })
                 .catch(err => {

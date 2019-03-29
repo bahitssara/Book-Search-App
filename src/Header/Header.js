@@ -3,13 +3,13 @@ import './Header.css'
 import SearchBar from '../Header/SearchBar/SearchBar'
 import FilterOptions from './FilterOptions/FilterOptions';
 
-export function Header () {
+export function Header (props) {
     return (
         <div className='header-container'>
             <div className='header'>
                 <h1>Google Book Search</h1>
             </div>
-                <SearchBar loadbookList={(bookList) => this.state.loadbookList(bookList)}
+                <SearchBar loadbookList={props.loadbookList}
                 />
                 <FilterOptions />
         </div>

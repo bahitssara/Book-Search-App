@@ -1,24 +1,23 @@
 import React from 'react'
-import BookDisplay from './BookInfo/BookDisplay';
+import BookInfo from './BookInfo/BookInfo'
 
 class Results extends React.Component {
+    render(){
+        console.log(this.props.bookList)
+    const bookList= this.props.bookList.map((book, i) => <BookInfo {...book} key={i}/>
+)
 
-    loadbookList(bookList) {
-        this.setState({
-          bookList: bookList
-        })
-      }  
-
-        render(){
-
-            return(
-                <div className='results-container'>
-                    <BookDisplay 
-                        loadbookList={booklist => this.loadbookList(booklist)}
-                        bookList={this.props.bookList}/>
-                </div>
+        return (
+            <div>
+                { bookList }
+            </div>
+            
         )
     }
 }
+    Results.defaultProps = {
+        bookList: []
+    };
+
 
 export default Results
